@@ -36,6 +36,9 @@ int main(int argc, const char* argv[]) {
   const char* server_port = argv[2];
   const char* filename = argv[3];
 
+  struct timespec start_time;
+  timespec_get(&start_time, TIME_UTC);
+
   /* Create an initiator socket */
   void* sock = foggy_socket(TCP_INITIATOR, server_port, server_ip);
 
@@ -48,10 +51,7 @@ int main(int argc, const char* argv[]) {
   }
 
   /* Wait for one second to ensure the socket is up */
-  sleep(1);
-
-  struct timespec start_time;
-  timespec_get(&start_time, TIME_UTC);
+  // sleep(1);
 
   char buf[BUF_SIZE];
   while (ifs) {
